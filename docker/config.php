@@ -80,7 +80,7 @@ define( 'YOURLS_DEBUG', getenv('YOURLS_DEBUG') !== 'false' );
  */
 
 /** URL shortening method: 36 or 62 */
-define( 'YOURLS_URL_CONVERT', getenv('YOURLS_URL_CONVERT') ?: 32 );
+define( 'YOURLS_URL_CONVERT', getenv('YOURLS_URL_CONVERT') ?: 36 );
 /*
  * 36: generates all lowercase keywords (ie: 13jkm)
  * 62: generates mixed case keywords (ie: 13jKm or 13JKm)
