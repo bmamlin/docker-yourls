@@ -1,18 +1,18 @@
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 
 ENV APP_ROOT /yourls
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN mkdir -p ${APP_ROOT} \
   && apt-get update \
-  && apt-get install -y curl apache2 supervisor libapache2-mod-php5 php5-mysql php5-curl \
+  && apt-get install -y curl apache2 supervisor php php-mysql php-curl \
   && unset DEBIAN_FRONTEND \
   && rm -rf /var/lib/apt/lists/* \
-  && curl -L https://github.com/YOURLS/YOURLS/archive/1.7.2.tar.gz | tar -zx -C ${APP_ROOT} --strip-components=1 \
-  && php5enmod mysql \
+  && curl -L https://github.com/YOURLS/YOURLS/archive/1.7.3.tar.gz | tar -zx -C ${APP_ROOT} --strip-components=1 \
+  && phpenmod mysql \
   && echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf \
   && a2enconf fqdn \
-  && a2enmod php5 rewrite
+  && a2enmod php7.2 rewrite
 
 COPY docker/start-yourls.sh /usr/bin/start-yourls.sh
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -28,4 +28,4 @@ WORKDIR ${APP_ROOT}
 RUN chown -R www-data:www-data ${APP_ROOT}
 
 EXPOSE 80
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]

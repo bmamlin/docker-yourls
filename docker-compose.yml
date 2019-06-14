@@ -22,3 +22,4 @@ web:
     - YOURLS_ADMIN_SSL=false
     - YOURLS_GA_TRACKING_ID=UA-12345678-90
     - YOURL_INDEX_WEBSITE=http://example.com/
+    - YOURLS_UNIQUE_URLS=false
