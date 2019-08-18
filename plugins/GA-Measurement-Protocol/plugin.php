@@ -67,7 +67,7 @@ function power_ga_mp($keyword, $title = '(unknown)', $referer = '') {
             'v' => $version,
             'tid' => $power_ga_mp_GAID,
             'cid' => power_ga_mp_gaParseCookie(),
-            'uip' => $_SERVER['REMOTE_ADDR'],
+            'uip' => $_SERVER['HTTP_X_REAL_IP'],
             'z' => $z,
             't' => 'pageview',
             'dh' => $_SERVER['SERVER_NAME'],
