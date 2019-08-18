@@ -62,28 +62,29 @@ function power_ga_mp($keyword, $title = '(unknown)', $referer = '') {
     $version = 1;
     $z = rand(100000000000,999999999999); // Cache Buster  to ensure browsers and proxies don't cache hits
     $power_ga_mp_GAID = getenv('YOURLS_GA_TRACKING_ID');
+    $language = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE'], 1);
    
-  $data = array(
-            'v' => $version,
-            'tid' => $power_ga_mp_GAID,
-            'cid' => power_ga_mp_gaParseCookie(),
-            'uip' => $_SERVER['HTTP_X_REAL_IP'],
-            'z' => $z,
-            't' => 'pageview',
-            'dh' => $_SERVER['SERVER_NAME'],
-            'dp' => $keyword,
-            'dt' => $title,
-            'dr' => $referer,
-        );
+    $data = array(
+        'v' => $version,
+        'tid' => $power_ga_mp_GAID,
+        'cid' => power_ga_mp_gaParseCookie(),
+        'uip' => $_SERVER['HTTP_X_REAL_IP'],
+        'ua' => $_SERVER['HTTP_USER_AGENT'],
+        'ul' => $language,
+        'z' => $z,
+        't' => 'pageview',
+        'dh' => $_SERVER['SERVER_NAME'],
+        'dp' => $keyword,
+        'dt' => $title,
+        'dr' => $referer
+    );
 
-
- if($data) {
+    if($data) {
         $getString = 'https://ssl.google-analytics.com/collect';
         $getString .= '?payload_data&';
         $getString .= http_build_query($data);
         $result = file_get_contents_curl($getString);
-        return $result;
-	
+        return $result;	
     }
     return false;
 }
