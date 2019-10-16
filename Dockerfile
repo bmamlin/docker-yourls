@@ -8,7 +8,7 @@ RUN mkdir -p ${APP_ROOT} \
   && apt-get install -y curl apache2 supervisor php php-mysql php-curl \
   && unset DEBIAN_FRONTEND \
   && rm -rf /var/lib/apt/lists/* \
-  && curl -L https://github.com/YOURLS/YOURLS/archive/1.7.3.tar.gz | tar -zx -C ${APP_ROOT} --strip-components=1 \
+  && curl -L https://github.com/YOURLS/YOURLS/archive/1.7.4.tar.gz | tar -zx -C ${APP_ROOT} --strip-components=1 \
   && phpenmod mysql \
   && echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf \
   && a2enconf fqdn \
