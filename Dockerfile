@@ -8,7 +8,7 @@ RUN mkdir -p ${APP_ROOT} \
   && apt-get install -y curl apache2 supervisor php php-mysql php-curl \
   && unset DEBIAN_FRONTEND \
   && rm -rf /var/lib/apt/lists/* \
-  && curl -L https://github.com/YOURLS/YOURLS/archive/1.7.4.tar.gz | tar -zx -C ${APP_ROOT} --strip-components=1 \
+  && curl -L https://github.com/YOURLS/YOURLS/archive/1.7.9.tar.gz | tar -zx -C ${APP_ROOT} --strip-components=1 \
   # undo https://github.com/YOURLS/YOURLS/commit/d97af0f1dc3ae5886db8a7561c1845432d001926
   # that clears active plugins whenever web container restarts
   && sed -i 's/^\(.*yourls_update_option.*active_plugins.*\)$/\/\/\1/' ${APP_ROOT}/includes/functions-install.php \
