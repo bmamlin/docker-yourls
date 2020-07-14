@@ -15,5 +15,6 @@ function temp_instead_function($args) {
   if ($code != 302) {
     // Redirect with 302 instead
     yourls_redirect($url,302);
+    die(); // added 7/14/2020 by Burke to get 302's working again after upgrade to YOURLS 1.7.9
   }
 }
